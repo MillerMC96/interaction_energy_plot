@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 
-fp = open('../txt/LJ-SR-bottleneck-bottleneck', 'r')
+fp = open(sys.argv[1], 'r')
 
 time = []
 energy = []
@@ -19,8 +20,15 @@ while fp:
         energy.append(float(y))
     else:
         break
-plt.hist(energy, bins=n_bins, orientation="horizontal")
+N, bins, patches = plt.hist(energy, bins=n_bins, orientation="horizontal")
+
+fracs = N / N.max()
+norm = colors.Normalize(fracs.min(), fracs.max())
+for thisfrac, thispatch in zip(fracs, patches):
+    color = plt.cm.viridis(norm(thisfrac))
+    thispatch.set_facecolor(color)
+
 plt.ylabel("energy [kJ/mol]")
 plt.xlabel("frequency")
-plt.title("energy distribution for bottleneck")
+plt.title("energy distribution of " + sys.argv[1])
 plt.show()

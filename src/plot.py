@@ -27,7 +27,6 @@ norm = colors.Normalize(fracs.min(), fracs.max())
 for thisfrac, thispatch in zip(fracs, patches):
     color = plt.cm.viridis(norm(thisfrac))
     thispatch.set_facecolor(color)
-
 plt.ylabel("energy [kJ/mol]")
 plt.xlabel("frequency")
 plt.title("energy distribution of " + sys.argv[1])

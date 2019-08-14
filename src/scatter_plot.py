@@ -20,8 +20,8 @@ while fp:
         energy.append(float(y))
     else:
         break
-plt.plot(energy)
+plt.plot(time, energy, linewidth=1)
 plt.ylabel("energy [kJ/mol]")
-plt.xlabel("frame")
+plt.xlabel("time [ps]")
 plt.title(sys.argv[1])
 plt.show()

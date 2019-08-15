@@ -13,12 +13,14 @@ while index < argc:
     files.append(open(sys.argv[index], 'r'))
     index += 1
 
+energies = list()
+times = list()
+
 for fp in files:
-    fp = open(sys.argv[1], 'r')
     
     # x and y axes
-    time = []
-    energy = []
+    time = list()
+    energy = list()
     
     # reading input
     while fp:
@@ -29,16 +31,21 @@ for fp in files:
             energy.append(float(y))
         else:
             break
-    # plotting
-    plt.plot(time, energy, linewidth=1)
+    times.append(time)
+    energies.append(energy)
+
+# plotting
+
+i = 0
+while i < argc - 1:
+    plt.plot(times[i], energies[i], linewidth=1)
+    i += 1
 
 # plot parameters
 
 spacing = 100
-top = max(energy) + spacing
-bottom = min(energy) - spacing
-
-
+top = np.amax(energies) + spacing
+bottom = np.amin(energies) - spacing
 plt.ylim([bottom, top])
 
 # pull indicators

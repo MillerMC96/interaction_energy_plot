@@ -5,67 +5,77 @@ import sys
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 
-fp = open(sys.argv[1], 'r')
+index = 1
+argc = len(sys.argv)
+files = []
 
-# x and y axes
-time = []
-energy = []
+while index < argc:
+    files.append(open(sys.argv[index], 'r'))
+    index += 1
 
-# reading input
-while fp:
-    line = fp.readline()
-    if line:
-        x, y = line.split()
-        time.append(float(x))
-        energy.append(float(y))
-    else:
-        break
+for fp in files:
+    fp = open(sys.argv[1], 'r')
+    
+    # x and y axes
+    time = []
+    energy = []
+    
+    # reading input
+    while fp:
+        line = fp.readline()
+        if line:
+            x, y = line.split()
+            time.append(float(x))
+            energy.append(float(y))
+        else:
+            break
+    # plotting
+    plt.plot(time, energy, linewidth=1)
 
-#plot parameters
+# plot parameters
 
 spacing = 100
 top = max(energy) + spacing
 bottom = min(energy) - spacing
 
-plt.plot(time, energy, linewidth=1)
 
 plt.ylim([bottom, top])
 
-#pull indicators
+# pull indicators
 
 transparency = 0.7
 text_spacing = 20
 offset_from_indicator = 0.2
 
-#first pull
+# first pull
 plt.axvline(0, alpha=transparency) 
 plt.text(0 + offset_from_indicator, bottom + text_spacing, 'first pull', rotation=90)
 
-#second pull
+# second pull
 plt.axvline(60, alpha=transparency)
 plt.text(60 + offset_from_indicator, bottom + text_spacing, 'second pull', rotation=90)
 
-#third pull
+# third pull
 plt.axvline(90, alpha=transparency)
 plt.text(90 + offset_from_indicator, bottom + text_spacing, 'third pull', rotation=90)
 
-#fourth pull
+# fourth pull
 plt.axvline(120, alpha=transparency)
 plt.text(120 + offset_from_indicator, bottom + text_spacing, 'fourth pull', rotation=90)
 
-#fifth pull
+# fifth pull
 plt.axvline(150, alpha=transparency)
 plt.text(150 + offset_from_indicator, bottom + text_spacing, 'fifth pull', rotation=90)
 
-#sixth pull
+# sixth pull
 plt.axvline(180, alpha=transparency)
 plt.text(180 + offset_from_indicator, bottom + text_spacing, 'sixth pull', rotation=90)
 
-#seventh pull
+# seventh pull
 plt.axvline(210, alpha=transparency)
 plt.text(210 + offset_from_indicator, bottom + text_spacing, 'seventh pull', rotation=90)
 
-#eighth pull
+# eighth pull
 plt.axvline(270, alpha=transparency)
 plt.text(270 + offset_from_indicator, bottom + text_spacing, 'eighth pull', rotation=90)
 

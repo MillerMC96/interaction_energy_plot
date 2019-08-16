@@ -38,8 +38,10 @@ for fp in files:
 
 i = 0
 while i < argc - 1:
-    plt.plot(times[i], energies[i], linewidth=1)
+    plt.plot(times[i], energies[i], linewidth=1, label=sys.argv[i + 1])
     i += 1
+
+plt.legend(loc='best')
 
 # plot parameters
 
@@ -88,5 +90,5 @@ plt.text(270 + offset_from_indicator, bottom + text_spacing, 'eighth pull', rota
 
 plt.ylabel("energy [kJ/mol]")
 plt.xlabel("time [ps]")
-plt.title(sys.argv[1])
+plt.title("Lennard-Jones Potentials over time")
 plt.show()

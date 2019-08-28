@@ -90,5 +90,5 @@ plt.text(270 + offset_from_indicator, bottom + text_spacing, 'eighth pull', rota
 
 plt.ylabel("energy [kJ/mol]")
 plt.xlabel("time [ps]")
-plt.title("Lennard-Jones Potentials over time")
+plt.title("Energy over time")
 plt.show()

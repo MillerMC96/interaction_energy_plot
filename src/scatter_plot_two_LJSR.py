@@ -34,12 +34,26 @@ for fp in files:
     times.append(time)
     energies.append(energy)
 
+# combining two LJSR interactions
+
+i = 0
+time = list()
+energy = list()
+while i < len(energies[0]):
+    time.append(times[0][i])
+    energy.append(energies[0][i] + energies[1][i])
+    i += 1
+
+times.append(time)
+energies.append(energy)
+
 # plotting
 
 i = 0
 while i < argc - 1:
     plt.plot(times[i], energies[i], linewidth=1, label=sys.argv[i + 1])
     i += 1
+plt.plot(times[2], energies[2], label="Total LJSR")
 
 plt.legend(loc='best')
 
